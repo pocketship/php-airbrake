@@ -64,11 +64,11 @@ class Configuration extends Record
         }
   
         if (!$this->projectRoot) {
-            $this->projectRoot = isset($this->serverData['_']) ? $this->serverData['_'] : $this->serverData['DOCUMENT_ROOT'];
+            $this->projectRoot = isset($this->serverData['_']) ? $this->serverData['_'] : ( isset($this->serverData['DOCUMENT_ROOT']) ? $this->serverData['DOCUMENT_ROOT'] : 'No Root');
         }
 
         if (!$this->url) {
-            $this->url = isset($this->serverData['REDIRECT_URL']) ? $this->serverData['REDIRECT_URL'] : $this->serverData['SCRIPT_NAME'];
+            $this->url = isset($this->serverData['REDIRECT_URL']) ? $this->serverData['REDIRECT_URL'] : ( isset($this->serverData['SCRIPT_NAME']) ? $this->serverData['SCRIPT_NAME'] : 'No Script');
         }
 
         if (!$this->hostname) {

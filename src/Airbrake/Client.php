@@ -100,6 +100,12 @@ class Client
             return;
         }
 
+        // custom hack to send to in queue
+        if (1) {
+          reportError($notice, $this->configuration);
+          return;
+        }
+
         return $this->connection->send($notice);
     }
 

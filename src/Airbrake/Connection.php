@@ -51,6 +51,12 @@ class Connection
 
         $xml = $notice->toXml($this->configuration);
 
+    // proxy
+    if (isset($_ENV['USE_CHARLES_PROXY']) && $_ENV['USE_CHARLES_PROXY']) {
+      curl_setopt($curl, CURLOPT_PROXY, "127.0.0.1");
+      curl_setopt($curl, CURLOPT_PROXYPORT, 8888);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0); // debug SSL
+    }
 		curl_setopt($curl, CURLOPT_URL, self::SERVICE_URL);
 		curl_setopt($curl, CURLOPT_POST, 1);
 		curl_setopt($curl, CURLOPT_HEADER, 0);
