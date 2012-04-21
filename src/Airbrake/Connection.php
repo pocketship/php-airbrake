@@ -11,11 +11,10 @@ namespace Airbrake;
  */
 class Connection
 {
-    const SERVICE_URL = 'http://airbrakeapp.com/notifier_api/v2/notices';
 
     protected $configuration = null;
     protected $headers = array();
-    
+
     /**
      * Build the object with the airbrake Configuration.
      *
@@ -28,7 +27,7 @@ class Connection
 		$this->addHeader(array(
 			'Accept: text/xml, application/xml',
 			'Content-Type: text/xml'
-		));        
+		));
     }
 
     /**
@@ -57,7 +56,8 @@ class Connection
       curl_setopt($curl, CURLOPT_PROXYPORT, 8888);
       curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0); // debug SSL
     }
-		curl_setopt($curl, CURLOPT_URL, self::SERVICE_URL);
+
+		curl_setopt($curl, CURLOPT_URL, $this->configuration->apiEndPoint);
 		curl_setopt($curl, CURLOPT_POST, 1);
 		curl_setopt($curl, CURLOPT_HEADER, 0);
 		curl_setopt($curl, CURLOPT_TIMEOUT, $this->configuration->timeout);
@@ -69,5 +69,5 @@ class Connection
 		curl_close($curl);
 
 		return $return;
-	}    
+	}
 }
