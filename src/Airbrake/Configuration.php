@@ -23,7 +23,7 @@ class Configuration extends Record
     protected $_serverData;
     protected $_getData;
     protected $_postData;
-    protected $_sessionData;
+    public $_sessionData;
     protected $_component;
     protected $_action;
     protected $_projectRoot;
